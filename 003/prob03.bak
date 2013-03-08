@@ -1,0 +1,30 @@
+#include <vector>
+#include <iostream>
+#include <math.h>
+#include "utility.h"
+
+using namespace std;
+using utility::primeSieve;
+
+int main()
+{
+   vector<long> primes;
+   long max = 600851475143, maxPrime = 0;
+   
+   primeSieve(max, primes);
+
+   for(int i = 0; i < primes.size(); i++)
+   {
+      if(max % primes[i] == 0)
+      {
+         maxPrime = primes[i];
+         do
+         {
+            max / primes[i];
+         }while(max % primes[i] == 0);
+      }
+
+   }
+   cout<< maxPrime << endl;
+   return 0;
+}
