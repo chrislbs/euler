@@ -1,18 +1,32 @@
 #!/usr/bin/python
 
-for i in range(1,10):
-   #get the string rep of what's after the decimal
-   val = str(1 / float(i))[2:]
-   #list of possible patterns
-   patterns = []
-   pat = ""
-   for j in range(0, len(val) / 2 + 1):
-      patterns.append(val[j])
-      for p in patterns:
-         if(p != patterns[0]):
-            p += val[j]
-         if(len(p) < len(pat)):
-            continue
-         where = val.find(p)
-         if(where != -1):
-            pat = p
+period = 0
+denom = 0
+for i in range(2, 1000):
+   #starting numerator
+   n = 1
+   
+   j = 0 
+   data = {}
+   #index to store repeated fraction
+   idx = -1
+   #while there is a remainder
+   while(n != 0): 
+      #if this numerator has been tested, the decimal will repeat
+      if n in data:
+         idx = data[n]
+         break;
+
+      #assign this numerator the index of the current count
+      data[n] = j
+      j += 1
+      #the numerator becomes the remainder bringing down the 0
+      n = (n % i) * 10
+
+   #if the loop escaped and set the repeat index, grab the period length
+   if idx != -1 :
+      period = max(period, j - idx)
+      if period == j - idx:
+         denom = i
+
+print denom
