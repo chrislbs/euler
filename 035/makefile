@@ -1,0 +1,8 @@
+CC=g++
+CCFLAGS=-std=c++0x
+INCLUDEDIRS=../lib
+LIBRARYDIRS=../lib
+LIBRARIES=euler
+
+prob34:
+	$(CC) main.cpp $(CCFLAGS) -I $(INCLUDEDIRS) -L $(LIBRARYDIRS) -l $(LIBRARIES)
