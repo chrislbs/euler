@@ -35,4 +35,21 @@ public class Puzzle {
             System.arraycopy(colVals, 0, state[i], 0, colVals.length);
         }
     }
+
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     * @throws ArrayIndexOutOfBoundsException
+     */
+    public int getValue(int row, int col) throws ArrayIndexOutOfBoundsException {
+        if(row < ROW_MIN || row > ROW_MAX)
+            throw new ArrayIndexOutOfBoundsException();
+
+        if(col < COL_MIN || col > COL_MAX)
+            throw  new ArrayIndexOutOfBoundsException();
+
+        return state[row][col];
+    }
 }
