@@ -1,0 +1,3 @@
+[submodule "cpmath"]
+	path = cpmath
+	url = git@github.com:chrislbs/cpmath.git
