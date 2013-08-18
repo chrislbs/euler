@@ -9,6 +9,30 @@ import java.util.Iterator;
  * Time: 1:18 PM
  */
 public class Puzzle {
-    private ArrayList<ArrayList<Integer>> values =
-            new ArrayList<ArrayList<Integer>>();
+    public static final int NUM_ROWS = 9;
+    public static final int NUM_COLS = 9;
+    public static final int ROW_MAX = 8;
+    public static final int ROW_MIN = 0;
+    public static final int COL_MAX = 8;
+    public static final int COL_MIN = 0;
+
+    private final int[][] state = new int[NUM_ROWS][NUM_COLS];
+
+    /**
+     *
+     * @param puzzleState
+     * @throws IllegalArgumentException
+     */
+    public Puzzle(int[][] puzzleState) throws IllegalArgumentException {
+        if(puzzleState.length != NUM_ROWS)
+            throw new IllegalArgumentException("Invalid number of rows.");
+
+        for(int i = 0; i < puzzleState.length; ++i) {
+            int[] colVals = puzzleState[i];
+            if(colVals.length != NUM_COLS)
+                throw new IllegalArgumentException("Invalid number of columns.");
+
+            System.arraycopy(colVals, 0, state[i], 0, colVals.length);
+        }
+    }
 }
