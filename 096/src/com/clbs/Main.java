@@ -1,5 +1,13 @@
 package com.clbs;
 
+import com.clbs.Sudoku.Puzzle;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Main {
 
     /**
@@ -14,5 +22,42 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+    }
+
+    private static Collection<Puzzle> ReadPuzzles() {
+        final String SUDOKU_FILE = "sudoku.txt";
+
+        ArrayList<Puzzle> puzzles = new ArrayList<Puzzle>();
+        try {
+            FileReader fr = new FileReader(SUDOKU_FILE);
+            try {
+                BufferedReader br = new BufferedReader(fr);
+
+                String puzzleName = br.readLine();
+                while(puzzleName != null) {
+                    int[][] state = ReadPuzzleState(br);
+                    puzzles.add(new Puzzle(puzzleName, state));
+                }
+            }
+            catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+            finally {
+                fr.close();
+            }
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return puzzles;
+    }
+
+    private static int[][] ReadPuzzleState(BufferedReader rdr) throws IOException{
+        int[][] state = new int[9][9];
+        for(int i = 0; i < 9; ++i) {
+            String row = rdr.readLine();
+
+
+        }
     }
 }
