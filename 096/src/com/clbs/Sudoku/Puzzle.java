@@ -17,13 +17,14 @@ public class Puzzle {
     public static final int COL_MIN = 0;
 
     private final int[][] state = new int[NUM_ROWS][NUM_COLS];
+    private final String name;
 
     /**
      *
      * @param puzzleState
      * @throws IllegalArgumentException
      */
-    public Puzzle(int[][] puzzleState) throws IllegalArgumentException {
+    public Puzzle(String name, int[][] puzzleState) throws IllegalArgumentException {
         if(puzzleState.length != NUM_ROWS)
             throw new IllegalArgumentException("Invalid number of rows.");
 
@@ -34,6 +35,8 @@ public class Puzzle {
 
             System.arraycopy(colVals, 0, state[i], 0, colVals.length);
         }
+
+        this.name = name;
     }
 
     /**
